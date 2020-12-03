@@ -4,9 +4,9 @@ import propTypes from 'prop-types';
 export default class AccountBalance extends Component {
     render() {
         return (
-            <>
-                ${this.props.amount}
-            </>
+            <section className='balance'>
+                Account Balance: ${this.props.amount}
+            </section>
         );
     }
 }
