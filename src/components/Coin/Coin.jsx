@@ -1,8 +1,12 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from 'react' //typed rcc
-import './Coin.css'; //create-react-app allows to do this.
+import styled from 'styled-components';
 import propTypes from 'prop-types'; //allows checking of props' types
 
+const Tabledata = styled.td`
+    border: 1px solid rgb(15, 10, 10);
+    width: 25vh;
+`;
 export default class Coin extends Component {
     constructor(props) {
       super(props);
@@ -12,7 +16,7 @@ export default class Coin extends Component {
       this.handleClick = this.handleClick.bind(this)//important to set for each event
     }
 /* THIS WOULD BE THE AUTOMATED CHANGING OF PRICES
-    componentDidMount() {
+    componenTabledataidMount() {
       let callback = () => {
         //set state to new random value
         let randomPercentage = 0.995 + Math.random() * 0.01;
@@ -35,7 +39,7 @@ export default class Coin extends Component {
 
 handleClick(event) {
   // Prevent the default action of submitting this form
-  event.preventDefault();
+  event.prevenTabledataefault();
 
   let randomPercentage = 0.95 + Math.random() * 0.1;
   this.setState( (oldState) => {
@@ -47,16 +51,16 @@ handleClick(event) {
 }
     render() {
         return (
-            <tr className='coinrow'>
-              <td>{this.props.name}</td>
-              <td>{this.props.ticker}</td>
-              <td>${this.state.price}</td>
-              <td>
+            <tr>
+              <Tabledata>{this.props.name}</Tabledata>
+              <Tabledata>{this.props.ticker}</Tabledata>
+              <Tabledata>${this.state.price}</Tabledata>
+              <Tabledata>
                 <form action='#' method='POST'>
                   <button onClick={this.handleClick}>Refresh
                   </button>
                 </form>
-              </td>
+              </Tabledata>
             </tr>
         );
       }
