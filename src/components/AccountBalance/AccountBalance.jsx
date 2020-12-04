@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import './AccountBalance.css' using styled-components instead
 import styled from 'styled-components';
 import propTypes from 'prop-types';
 

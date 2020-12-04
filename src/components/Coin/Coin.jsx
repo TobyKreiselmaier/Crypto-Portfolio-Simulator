@@ -37,18 +37,17 @@ export default class Coin extends Component {
     }
 */
 
-handleClick(event) {
-  // Prevent the default action of submitting this form
-  event.prevenTabledataefault();
+    handleClick(event) {
+      // Prevent the default action of submitting this form
+      event.preventDefault();
 
-  let randomPercentage = 0.95 + Math.random() * 0.1;
-  this.setState( (oldState) => {
-    return {
-      price: oldState.price * randomPercentage
-    };
-  });
-
-}
+      let randomPercentage = 0.95 + Math.random() * 0.1;
+      this.setState( (oldState) => {
+        return {
+          price: oldState.price * randomPercentage
+        };
+      });
+    }
     render() {
         return (
             <tr>
