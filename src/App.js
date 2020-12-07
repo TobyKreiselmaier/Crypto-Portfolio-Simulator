@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css';//style app here
 import Header from './components/ExchangeHeader/ExchangeHeader';
 import AccountBalance from './components/AccountBalance/AccountBalance';
 import CoinList from './components/CoinList/CoinList';
@@ -44,13 +43,31 @@ class App extends React.Component {
         }
       ]
     }
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
+
+  handleRefresh(valueChangeTicker) {
+    const newCoinData = this.state.coinData.map( function ( {ticker, name, price} ) {
+      let newPrice = price;
+      if ( valueChangeTicker === ticker) {
+        let randomPercentage = 0.95 + Math.random() * 0.1;
+            newPrice = newPrice * randomPercentage;
+      }
+      return {
+        ticker: ticker,
+        name: name,
+        price: newPrice
+      }
+    });
+    this.setState( {coinData: newCoinData} )
+  }
+
   render() {
     return (
       <Div className="App">
         <Header/>
         <AccountBalance amount={this.state.balance}/>
-        <CoinList coinData={this.state.coinData}/>
+        <CoinList coinData={this.state.coinData} handleRefresh={this.handleRefresh}/>
       </Div>
     );
   }
