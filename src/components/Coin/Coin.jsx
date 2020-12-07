@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-constructor */
-import React, { Component } from 'react' //typed rcc
+import React, { Component } from 'react'; //typed rcc
 import styled from 'styled-components';
 import propTypes from 'prop-types'; //allows checking of props' types
 

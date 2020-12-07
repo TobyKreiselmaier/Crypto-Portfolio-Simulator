@@ -25,19 +25,7 @@
   display: inline-block;
   font-size: 1.4 rem
 }
-.App-link {
-  color: #61dafb;
-}
 
 .App-title {
   font-size: 4rem;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Coin from '../Coin/Coin';
 
 export default class CoinList extends Component {
