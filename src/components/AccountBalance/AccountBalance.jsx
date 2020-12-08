@@ -9,9 +9,11 @@ const Section = styled.section`
 `;
 export default class AccountBalance extends Component {
     render() {
+        const buttonText = this.props.showBalance ? 'Hide Balance' : 'Show Balance';
         return (
             <Section>
                 Account Balance: <span>${this.props.amount}</span>
+                <button>{buttonText}</button>
             </Section>
         );
     }
