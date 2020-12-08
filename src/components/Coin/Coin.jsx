@@ -17,12 +17,7 @@ const Button = styled.button`
 `;
 
 export default class Coin extends Component {
-    constructor(props) {
-      super(props);
-      this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(event) {
+    handleClick = (event) => {
       event.preventDefault();
       this.props.handleRefresh(this.props.ticker);
     }
