@@ -15,6 +15,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       balance: 10000,
+      showBalance: true, //added bool so condition can be passed on
       coinData: [
         {
           name: 'Bitcoin',
@@ -49,10 +50,16 @@ class App extends React.Component {
       ]
     }
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleBalanceDisplay = this.handleBalanceDisplay.bind(this);//add binding
   }
 
+  handleBalanceDisplay() {
+    this.setState({showBalance: !this.state.showBalance});//change bool
+  }
+
+
   handleRefresh(valueChangeTicker) {
-    const newCoinData = this.state.coinData.map( function ( {ticker, name, price} ) {//not using .find(), bc of immutability
+    const newCoinData = this.state.coinData.map( function ( {ticker, name, price} ) {
       let newPrice = price;
       if ( valueChangeTicker === ticker) {
         let randomPercentage = 0.95 + Math.random() * 0.1;
@@ -64,15 +71,19 @@ class App extends React.Component {
         price: newPrice
       }
     });
-    this.setState( {coinData: newCoinData} )//will trigger fresh rendering //balance remains untouchted
+    this.setState( {coinData: newCoinData} )//will trigger fresh rendering //balance remains untouched
   }
 
   render() {
     return (
       <Div className="App">
         <ExchangeHeader/>
-        <AccountBalance amount={this.state.balance} showBalance={true}/>
-        <CoinList coinData={this.state.coinData} handleRefresh={this.handleRefresh}/>
+        <AccountBalance amount={this.state.balance} 
+                        showBalance={this.state.showBalance} 
+                        handleBalanceDisplay={this.handleBalanceDisplay}/>
+        <CoinList coinData={this.state.coinData} 
+                  showBalance={this.state.showBalance}
+                  handleRefresh={this.handleRefresh}/>
       </Div>
     );
   }

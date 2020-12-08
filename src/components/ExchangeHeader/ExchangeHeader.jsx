@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Header = styled.header`
     background-color: #282c34;
-    min-height: 20vh;
+    min-height: 10vh;
     display: flex;
     flex-direction: row;
     align-items: center;
