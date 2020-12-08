@@ -59,7 +59,7 @@ class App extends React.Component {
 
 
   handleRefresh(valueChangeTicker) {
-    const newCoinData = this.state.coinData.map( function ( {ticker, name, price} ) {
+    const newCoinData = this.state.coinData.map( function ( {name, ticker, balance, price} ) {
       let newPrice = price;
       if ( valueChangeTicker === ticker) {
         let randomPercentage = 0.95 + Math.random() * 0.1;
@@ -68,6 +68,7 @@ class App extends React.Component {
       return {//necessary within .map()
         ticker: ticker,
         name: name,
+        balance: balance,
         price: newPrice
       }
     });
