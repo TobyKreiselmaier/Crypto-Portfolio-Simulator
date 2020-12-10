@@ -55,12 +55,12 @@ class App extends React.Component {
     this.setState({showBalance: !this.state.showBalance});
   }
 
-  handleRefresh = async (valueChangeId) => {
-    const response = await axios.get(`https://api.coinpaprika.com/v1/tickers/${valueChangeId}`);
+  handleRefresh = async (tickerId) => {
+    const response = await axios.get(`https://api.coinpaprika.com/v1/tickers/${tickerId}`);
     const newPrice = formatPrice(response.data.quotes.USD.price);
     const newCoinData = this.state.coinData.map((values) => {
       let newValues = { ...values };
-      if (valueChangeId === values.key) {
+      if (tickerId === values.key) {
         newValues.price = newPrice;
       }
       return newValues;
