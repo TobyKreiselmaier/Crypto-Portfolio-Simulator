@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import ExchangeHeader from './components/ExchangeHeader/ExchangeHeader';
 import AccountBalance from './components/AccountBalance/AccountBalance';
 import CoinList from './components/CoinList/CoinList';
@@ -14,19 +14,17 @@ const Div = styled.div`
 const COIN_COUNT = 10;
 const formatPrice = price => parseFloat(Number(price).toFixed(4));
 
-class App extends React.Component {
-  state = {
-    balance: 10000,
-    showBalance: true,
-    coinData: []
-  }
+function App (props) {
+  const [balance, setBalance] = useState(10000);//use State Hook
+  const [showBalance, setShowBalance] = useState(true);
+  const [coinData, setCoinData] = useState([]);
 
-  getTopIds = async () => {
+  const getTopIds = async () => {
     const response = await axios.get('https://api.coinpaprika.com/v1/coins');
     return response.data.slice(0, COIN_COUNT).map(coin => coin.id);
   }
 
-  getNewCoinData = async (ids) => {
+  const getNewCoinData = async (ids) => {
     let data = [];
     const response = await axios.get('https://api.coinpaprika.com/v1/tickers');
     for (let i = 0; i < response.data.length; i++) {
@@ -45,42 +43,46 @@ class App extends React.Component {
     return data;
   }
 
-  componentDidMount = async () => {
-    const topIds = await this.getTopIds();
-    const newCoinData = await this.getNewCoinData(topIds);
-    this.setState({coinData: newCoinData});
+  const componentDidMount = async () => {
+    const topIds = await getTopIds();
+    const newCoinData = await getNewCoinData(topIds);
+    setCoinData(newCoinData);
   }
 
-  handleBalanceDisplay = () => {
-    this.setState({showBalance: !this.state.showBalance});
+  useEffect(() => {//Effect Hook - can not be async!
+    if (coinData.length === 0) {//componentDidMount sitation
+      componentDidMount();
+    }
+  });
+
+  const handleBalanceDisplay = () => {
+    setShowBalance(oldValue => !oldValue)
   }
 
-  handleRefresh = async (tickerId) => {
+  const handleRefresh = async (tickerId) => {
     const response = await axios.get(`https://api.coinpaprika.com/v1/tickers/${tickerId}`);
     const newPrice = formatPrice(response.data.quotes.USD.price);
-    const newCoinData = this.state.coinData.map((values) => {
+    const newCoinData = coinData.map((values) => {
       let newValues = { ...values };
       if (tickerId === values.key) {
         newValues.price = newPrice;
       }
       return newValues;
     });
-    this.setState({coinData: newCoinData});
+    setCoinData(newCoinData);
   }
 
-  render() {
-    return (
-      <Div className="App">
-        <ExchangeHeader/>
-        <AccountBalance amount={this.state.balance} 
-                        showBalance={this.state.showBalance} 
-                        handleBalanceDisplay={this.handleBalanceDisplay}/>
-        <CoinList coinData={this.state.coinData} 
-                  showBalance={this.state.showBalance}
-                  handleRefresh={this.handleRefresh}/>
-      </Div>
-    );
-  }
+  return (
+    <Div className="App">
+      <ExchangeHeader/>
+      <AccountBalance amount={balance} 
+                      showBalance={showBalance} 
+                      handleBalanceDisplay={handleBalanceDisplay}/>
+      <CoinList coinData={coinData} 
+                showBalance={showBalance}
+                handleRefresh={handleRefresh}/>
+    </Div>
+  );
 }
 
 export default App;
