@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import logo from './logo.svg'
 import styled from 'styled-components';
 
@@ -22,15 +22,13 @@ const H1 = styled.h1`
     font-size: 4rem;
 `;
 
-export default class ExchangeHeader extends Component {
-    render() {
-        return (
-            <Header>
-                <Img src={logo} alt='React Logo'></Img>
-                <H1>
-                    Coin Exchange
-                </H1>
-            </Header>
-        )
-    }
+export default function ExchangeHeader () {
+    return (
+        <Header>
+            <Img src={logo} alt='React Logo'></Img>
+            <H1>
+                Coin Exchange
+            </H1>
+        </Header>
+    )
 }
