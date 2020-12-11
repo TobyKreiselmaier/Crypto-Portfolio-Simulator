@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import ExchangeHeader from './components/ExchangeHeader/ExchangeHeader';
+import Header from './components/Header/Header';
 import AccountBalance from './components/AccountBalance/AccountBalance';
 import CoinList from './components/CoinList/CoinList';
 import styled from 'styled-components';
 import axios from 'axios';
+import 'bootswatch/dist/darkly/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/js/all';
 
 const Div = styled.div`
     text-align: center;
@@ -12,10 +14,14 @@ const Div = styled.div`
 `;
 
 const COIN_COUNT = 10;
-const formatPrice = price => parseFloat(Number(price).toFixed(4));
+
+var formatter = Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+});
 
 function App (props) {
-  const [balance, setBalance] = useState(10000);//use State Hook
+  const [balance, setBalance] = useState(0);//use State Hook
   const [showBalance, setShowBalance] = useState(true);
   const [coinData, setCoinData] = useState([]);
 
@@ -35,7 +41,7 @@ function App (props) {
             name: response.data[i].name,
             ticker: response.data[i].symbol,
             balance: 0,
-            price: formatPrice(response.data[i].quotes.USD.price),
+            price: formatter.format(response.data[i].quotes.USD.price)
           });
         }
       }
@@ -44,6 +50,16 @@ function App (props) {
   }
 
   const componentDidMount = async () => {
+    var amount = parseInt(prompt("Please enter the size of your testportfolio in USD:", 1000000));
+    if (isNaN(amount)) {
+      alert("Please enter a number!");
+      window.location.reload();
+    } else if (amount <= 0) {
+      alert("Please enter a positive number!");
+      window.location.reload();
+    } else{
+      setBalance(amount);
+    }
     const topIds = await getTopIds();
     const newCoinData = await getNewCoinData(topIds);
     setCoinData(newCoinData);
@@ -55,13 +71,30 @@ function App (props) {
     }
   });
 
+  const handleAirDrop = () => {
+    setBalance(old => old + 1200);
+  }
+
+  const handleTransaction = (isBuy, valueChangeId) => {
+    var balanceChange = isBuy ? 1 : -1;
+    const newCoinData = coinData.map( function(values) {
+      let newValues = {...values};
+      if (valueChangeId === values.key) {
+        newValues.balance += balanceChange;
+        setBalance(old => old - balanceChange * newValues.price)
+      }
+      return newValues;
+    });
+    setCoinData(newCoinData);
+  }
+
   const handleBalanceDisplay = () => {
-    setShowBalance(oldValue => !oldValue)
+    setShowBalance(old => !old);
   }
 
   const handleRefresh = async (tickerId) => {
     const response = await axios.get(`https://api.coinpaprika.com/v1/tickers/${tickerId}`);
-    const newPrice = formatPrice(response.data.quotes.USD.price);
+    const newPrice = formatter.format(response.data.quotes.USD.price);
     const newCoinData = coinData.map((values) => {
       let newValues = { ...values };
       if (tickerId === values.key) {
@@ -74,13 +107,17 @@ function App (props) {
 
   return (
     <Div className="App">
-      <ExchangeHeader/>
-      <AccountBalance amount={balance} 
-                      showBalance={showBalance} 
-                      handleBalanceDisplay={handleBalanceDisplay}/>
-      <CoinList coinData={coinData} 
-                showBalance={showBalance}
-                handleRefresh={handleRefresh}/>
+      <Header/>
+      <AccountBalance 
+        amount={balance} 
+        showBalance={showBalance} 
+        handleAirDrop={handleAirDrop} 
+        handleBalanceDisplay={handleBalanceDisplay}/>
+      <CoinList 
+        coinData={coinData} 
+        showBalance={showBalance} 
+        handleTransaction={handleTransaction} 
+        handleRefresh={handleRefresh}/>
     </Div>
   );
 }
