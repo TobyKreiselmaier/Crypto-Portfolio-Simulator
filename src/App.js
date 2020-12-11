@@ -78,7 +78,7 @@ function App () {
     }
   });
 
-  const handleAirDrop = () => {
+  const handleAirDrop = () => {//doesn't fire
     setBalance(old => old + 1200);
   }
 
