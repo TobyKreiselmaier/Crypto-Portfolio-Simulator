@@ -3,7 +3,6 @@ import Coin from '../Coin/Coin';
 import styled from 'styled-components';
 
 const Table = styled.table`
-    font-size: 1rem;
     width: 80%;
     margin: auto;
     line-height: 2rem;

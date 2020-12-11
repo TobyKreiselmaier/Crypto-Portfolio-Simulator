@@ -4,12 +4,12 @@ import propTypes from 'prop-types';
 
 const Td = styled.td`
     border: 1px solid rgb(15, 10, 10);
-    width: 16vw;
+    width: 12vw;
     height: 5vh;
 `;
 
 const TdControls = styled(Td)`
-    width: 24vw;
+    width: 20vw;
 `;
 
 const TdName = styled(Td)`
@@ -48,7 +48,7 @@ export default function Coin (props) {
       <TdControls>
         <form action='#' method='POST'>
         <Button className='btn btn-warning' onClick={handleRefresh}>
-            Refresh
+            Refresh Price
         </Button>
         <Button className='btn btn-success' onClick={handleBuy}>
             Buy
