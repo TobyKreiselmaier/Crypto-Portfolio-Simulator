@@ -20,7 +20,7 @@ var formatter = Intl.NumberFormat('en-US', {
   currency: 'USD'
 });
 
-function App (props) {
+function App () {
   const [balance, setBalance] = useState(0);//use State Hook
   const [showBalance, setShowBalance] = useState(true);
   const [coinData, setCoinData] = useState([]);
@@ -50,7 +50,10 @@ function App (props) {
   }
 
   const componentDidMount = async () => {
-    var amount = parseInt(prompt("Please enter the size of your testportfolio in USD:", 1000000));
+    const topIds = await getTopIds();
+    const newCoinData = await getNewCoinData(topIds);
+    setCoinData(newCoinData);
+    var amount = parseFloat(prompt("Please enter the size of your testportfolio in USD:", 1000000));
     if (isNaN(amount)) {
       alert("Please enter a number!");
       window.location.reload();
@@ -60,9 +63,6 @@ function App (props) {
     } else{
       setBalance(amount);
     }
-    const topIds = await getTopIds();
-    const newCoinData = await getNewCoinData(topIds);
-    setCoinData(newCoinData);
   }
 
   useEffect(() => {//Effect Hook - can not be async!
@@ -80,8 +80,11 @@ function App (props) {
     const newCoinData = coinData.map( function(values) {
       let newValues = {...values};
       if (valueChangeId === values.key) {
+        if(newValues.balance + balanceChange >= 0) {
         newValues.balance += balanceChange;
-        setBalance(old => old - balanceChange * newValues.price)
+        console.log(parseFloat((newValues.price).replace(/[$,]/g,'')));
+        setBalance(old => old - balanceChange * parseFloat((newValues.price).replace(/[$,]/g,'')))
+        }
       }
       return newValues;
     });
