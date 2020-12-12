@@ -44,7 +44,7 @@ export default function AccountBalance (props) {
                     {props.showBalance ? 'Hide Balances' : 'Show Balances'}
                 </Button>
                 <Button 
-                    onclick={props.handleAirDrop}
+                    onClick={props.handleAirDrop}
                     className='btn btn-success'>
                     <i className="fas fa-helicopter"></i>
                 </Button>
