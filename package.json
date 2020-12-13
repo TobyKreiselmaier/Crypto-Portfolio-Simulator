@@ -17,7 +17,7 @@
     "uuid": "^8.3.1",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "https://tobykreiselmaier.github.io/coin-exchange",
+  "homepage": "https://tobykreiselmaier.github.io/Crypto-Portfolio-Simulator",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
