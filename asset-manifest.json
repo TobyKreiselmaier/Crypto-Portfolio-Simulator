@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/coin-exchange/static/css/main.0c5dad22.chunk.css",
-    "main.js": "/coin-exchange/static/js/main.398dec3c.chunk.js",
-    "main.js.map": "/coin-exchange/static/js/main.398dec3c.chunk.js.map",
-    "runtime-main.js": "/coin-exchange/static/js/runtime-main.89e7f080.js",
-    "runtime-main.js.map": "/coin-exchange/static/js/runtime-main.89e7f080.js.map",
-    "static/css/2.41b91e01.chunk.css": "/coin-exchange/static/css/2.41b91e01.chunk.css",
-    "static/js/2.aea42c16.chunk.js": "/coin-exchange/static/js/2.aea42c16.chunk.js",
-    "static/js/2.aea42c16.chunk.js.map": "/coin-exchange/static/js/2.aea42c16.chunk.js.map",
-    "static/js/3.3513da04.chunk.js": "/coin-exchange/static/js/3.3513da04.chunk.js",
-    "static/js/3.3513da04.chunk.js.map": "/coin-exchange/static/js/3.3513da04.chunk.js.map",
-    "index.html": "/coin-exchange/index.html",
-    "static/css/2.41b91e01.chunk.css.map": "/coin-exchange/static/css/2.41b91e01.chunk.css.map",
-    "static/css/main.0c5dad22.chunk.css.map": "/coin-exchange/static/css/main.0c5dad22.chunk.css.map",
-    "static/js/2.aea42c16.chunk.js.LICENSE.txt": "/coin-exchange/static/js/2.aea42c16.chunk.js.LICENSE.txt",
-    "static/media/logo.a2636e92.png": "/coin-exchange/static/media/logo.a2636e92.png"
+    "main.css": "/Crypto-Portfolio-Simulator/static/css/main.0c5dad22.chunk.css",
+    "main.js": "/Crypto-Portfolio-Simulator/static/js/main.398dec3c.chunk.js",
+    "main.js.map": "/Crypto-Portfolio-Simulator/static/js/main.398dec3c.chunk.js.map",
+    "runtime-main.js": "/Crypto-Portfolio-Simulator/static/js/runtime-main.90890bc7.js",
+    "runtime-main.js.map": "/Crypto-Portfolio-Simulator/static/js/runtime-main.90890bc7.js.map",
+    "static/css/2.41b91e01.chunk.css": "/Crypto-Portfolio-Simulator/static/css/2.41b91e01.chunk.css",
+    "static/js/2.3130426f.chunk.js": "/Crypto-Portfolio-Simulator/static/js/2.3130426f.chunk.js",
+    "static/js/2.3130426f.chunk.js.map": "/Crypto-Portfolio-Simulator/static/js/2.3130426f.chunk.js.map",
+    "static/js/3.3513da04.chunk.js": "/Crypto-Portfolio-Simulator/static/js/3.3513da04.chunk.js",
+    "static/js/3.3513da04.chunk.js.map": "/Crypto-Portfolio-Simulator/static/js/3.3513da04.chunk.js.map",
+    "index.html": "/Crypto-Portfolio-Simulator/index.html",
+    "static/css/2.41b91e01.chunk.css.map": "/Crypto-Portfolio-Simulator/static/css/2.41b91e01.chunk.css.map",
+    "static/css/main.0c5dad22.chunk.css.map": "/Crypto-Portfolio-Simulator/static/css/main.0c5dad22.chunk.css.map",
+    "static/js/2.3130426f.chunk.js.LICENSE.txt": "/Crypto-Portfolio-Simulator/static/js/2.3130426f.chunk.js.LICENSE.txt",
+    "static/media/logo.a2636e92.png": "/Crypto-Portfolio-Simulator/static/media/logo.a2636e92.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.89e7f080.js",
+    "static/js/runtime-main.90890bc7.js",
     "static/css/2.41b91e01.chunk.css",
-    "static/js/2.aea42c16.chunk.js",
+    "static/js/2.3130426f.chunk.js",
     "static/css/main.0c5dad22.chunk.css",
     "static/js/main.398dec3c.chunk.js"
   ]
